@@ -7,6 +7,11 @@ import { TrainerPage } from './pages/trainer/trainer.page';
 const routes: Routes = [
   {
     path: "",
+    pathMatch: "full",
+    redirectTo: "/login"
+  },
+  {
+    path: "login",
     component: LoginPage
   },
   {
@@ -14,7 +19,7 @@ const routes: Routes = [
     component: TrainerPage
   },
   {
-    path: "profile",
+    path: "pokemon",
     component: PokemonCatalougePage
   }
 ];
