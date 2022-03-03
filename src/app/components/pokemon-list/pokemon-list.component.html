@@ -1,1 +1,7 @@
-<p>pokemon-list works!</p>
+<!-- gridzone?? -->
+<ul>
+    <li *ngFor="let pkmn of pokemon">
+        <span>{{pkmn.name}}</span>
+        <img src={{pkmn.dwArt}} alt={{pkmn.name}}>
+    </li>
+</ul>

@@ -1,6 +1,5 @@
 <!-- pokemon-catalogue.page.html -->
-<p>pokemon-catalouge works!</p>
-<div class="catalogue">
+<main class="catalogue">
 
     <h1 class="title">Pokémon catalogue</h1>
 
@@ -10,7 +9,10 @@
     </select>
 
     <h4 class="subtitle">Pokémon</h4>
+    <p *ngIf="loading">Loading Pokémon...</p>
+    <app-pokemon-list [pokemon]="pokemon"></app-pokemon-list>
     <ul class="all-pokemon">
+
         <li>Pokemon go here :)</li>
         <!--
         <li class="profile-power" *ngFor="let pkmn of pokemon.noe">
@@ -19,4 +21,4 @@
         -->
     </ul>
 
-</div>
+</main>
