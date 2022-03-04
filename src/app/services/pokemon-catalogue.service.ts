@@ -36,8 +36,8 @@ export class PokemonCatalogueService {
         this.http.get<PokemonApiResponse>(apiPokemon)
         .pipe(
             finalize(() => {
-                this._loading = false;
                 this._setPokemonSpritesAndId();
+                this._loading = false;
             })
         )
         .subscribe({

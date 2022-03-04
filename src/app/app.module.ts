@@ -18,7 +18,7 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
     PokemonCatalougePage,
     TrainerPage,
     PokemonListComponent,
-    PokemonComponent
+    PokemonComponent,
   ],
   imports: [
     BrowserModule,
