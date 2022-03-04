@@ -1,4 +1,4 @@
-export interface Pokemon {
+ export interface Pokemon {
     id: number;
     name: string;
     dwArt: string | null;

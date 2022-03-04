@@ -1,0 +1,12 @@
+<form class="flex flex-col items-center max-w-xl " #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
+    <img class="" src="../../../assets//images/pokemon-starters.png"/>
+    <p class=" font-bold pt-6">Enter trainer name!</p>
+    <fieldset class="flex">
+        <input type="text" 
+        ngModel
+        #username="ngModel"
+        name="username" id="username" 
+        class="rounded-lg shadow-lg w-96 border-4 border-solid border-sky-600" placeholder="trainer"/>
+        <button type="submit" class="rounded-lg shadow-lg bg-yellow-500 p-2">Login</button>
+    </fieldset>
+</form>
