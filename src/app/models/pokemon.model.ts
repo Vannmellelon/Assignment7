@@ -4,4 +4,5 @@ export interface Pokemon {
     dwArt: string | null;
     animatedSprite: string | null;
     sprite: string | null;
+    caught: boolean;
 }

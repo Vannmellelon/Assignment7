@@ -9,6 +9,7 @@ import { PokemonCatalougePage } from './pages/pokemon-catalouge/pokemon-cataloug
 import { TrainerPage } from './pages/trainer/trainer.page';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
+import { CatchButtonComponent } from './components/catch-button/catch-button.component';
 
 //Decorator
 @NgModule({
@@ -19,6 +20,7 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
     TrainerPage,
     PokemonListComponent,
     PokemonComponent,
+    CatchButtonComponent,
   ],
   imports: [
     BrowserModule,

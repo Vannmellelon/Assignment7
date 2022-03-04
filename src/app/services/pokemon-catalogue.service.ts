@@ -29,7 +29,7 @@ export class PokemonCatalogueService {
 
     constructor(private readonly http: HttpClient) { }
 
-    // Find a pokemon based on id
+    // Find pokemon
     public findPokemon(): void {
 
         this._loading = true;
@@ -56,9 +56,9 @@ export class PokemonCatalogueService {
     private _setPokemonSpritesAndId() : void {
         
         // refactor?! lol
-        // Should be able to handle 1 gen at the time(?)
+        // Should be able to handle 1 gen at the time
         // take in start and end indices
-        // check for animated sprite or not (based on indices)
+        // check for animated sprite or not (based on indices gen #)
 
         let counter = 1;
         for (let pkmn of this._pokemon) {
