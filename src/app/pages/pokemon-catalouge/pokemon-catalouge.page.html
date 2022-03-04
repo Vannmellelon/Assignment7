@@ -1,1 +1,15 @@
-<p>pokemon-catalouge works!</p>
+<!-- pokemon-catalogue.page.html -->
+<main class="flex flex-col items-center p-10">
+
+    <h1 class="title">Pokémon catalogue</h1>
+
+    <!--TODO region selector, onchange function that loads different groups of pkmn-->
+    <h4 class="subtitle">Select region</h4>
+    <select name="select-region" id="select-region">
+        <option value="1">Kanto</option>
+    </select>
+    
+    <h4 class="subtitle">Pokémon</h4>
+    <p *ngIf="loading">Loading Pokémon...</p>
+    <app-pokemon-list [pokemon]="pokemon"></app-pokemon-list>
+</main>
