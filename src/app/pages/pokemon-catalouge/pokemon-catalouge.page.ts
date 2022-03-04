@@ -26,4 +26,7 @@ export class PokemonCatalougePage implements OnInit {
     this.pokemonCatalogueService.findPokemon();
   }
 
+  // TODO Get input value from selector, find pokemon from given gen
+  // row of buttons instead of selector?
+  // can start with gen 1
 }

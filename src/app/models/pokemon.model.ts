@@ -1,5 +1,5 @@
 export interface Pokemon {
-    //id: number;
+    id: number;
     name: string;
     dwArt: string | null;
     animatedSprite: string | null;

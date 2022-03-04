@@ -37,7 +37,7 @@ export class PokemonCatalogueService {
         .pipe(
             finalize(() => {
                 this._loading = false;
-                this._setPokemonSprites();
+                this._setPokemonSpritesAndId();
             })
         )
         .subscribe({
@@ -53,36 +53,31 @@ export class PokemonCatalogueService {
         })
     }
 
-    private _setPokemonSprites() : void {
+    private _setPokemonSpritesAndId() : void {
         
         // refactor?! lol
+        // Should be able to handle 1 gen at the time(?)
+        // take in start and end indices
+        // check for animated sprite or not (based on indices)
+
         let counter = 1;
         for (let pkmn of this._pokemon) {
-            this._setPokemonDWart(pkmn, counter);
+            pkmn.id = counter; // Adds id
+            pkmn.name = pkmn.name[0].toUpperCase() + pkmn.name.slice(1,pkmn.name.length); // Capitalizes the names of the pokemon
+            this._setPokemonDWart(pkmn, counter); // needed?
+            this._setPokemonAnimatedSprite(pkmn, counter); // gen5 animated sprites
             counter ++;
             //console.log(pkmn);
         }
     }
 
     private _setPokemonDWart(pkmn:Pokemon, id:number) : void {
-        console.log("Hello from setDWart")
         pkmn.dwArt = apiPokemonDW + id + ".svg";
         // EZ PZ >:D
+    }
 
-        /*
-        this.http.get<string>(apiPokemonDW + id + ".svg")
-        .subscribe({
-            next: (dwImage: string) => {
-                console.log("dwImage", dwImage)
-                pkmn.dwArt = dwImage;
-                console.log("set DW art", pkmn);
-            },
-            error: (error: HttpErrorResponse) => {
-                //this._error = error.message;
-                // do something mayB ig :P
-            }
-        })
-        */
+    private _setPokemonAnimatedSprite (pkmn:Pokemon, id:number) : void {
+        pkmn.animatedSprite = apiPokemonAnimated + id + ".gif";
     }
 
     // Check for pokemon function (?)
