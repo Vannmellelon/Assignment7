@@ -1,0 +1,7 @@
+<!-- TODO add favourite button/icon -->
+<div class="pkmnGrid flex flex-wrap gap-1">
+    <div class="pkmn w-36 h-36 p-2 m-2 flex flex-col content-center justify-center" *ngFor="let pkmn of pokemon">
+        <img class="pkmnImg object-none max-w-24 max-h-24" src={{pkmn.animatedSprite}} alt={{pkmn.name}}>
+        <span class="pkmnName text-center">{{pkmn.name}}</span>
+    </div>
+</div>
