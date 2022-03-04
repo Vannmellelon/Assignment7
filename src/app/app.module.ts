@@ -8,7 +8,8 @@ import { LoginPage } from './pages/login/login.page';
 import { PokemonCatalougePage } from './pages/pokemon-catalouge/pokemon-catalouge.page';
 import { TrainerPage } from './pages/trainer/trainer.page';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { FormsModule } from "@angular/forms"
+import { FormsModule } from "@angular/forms";
+import { NavbarComponent } from './components/navbar/navbar.component'
 
 //Decorator
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from "@angular/forms"
     LoginPage,
     PokemonCatalougePage,
     TrainerPage,
-    LoginFormComponent
+    LoginFormComponent,
+    NavbarComponent
   ],
   imports: [ // modules
     BrowserModule,
