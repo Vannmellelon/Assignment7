@@ -29,7 +29,7 @@ export class TrainerPage implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.pokemonCatalogueService.findPokemon();
+    //this.pokemonCatalogueService.findPokemon();
   }
 
 }

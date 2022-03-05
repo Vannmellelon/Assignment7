@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenerationKeys } from 'src/app/enums/generation-keys.enum';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.service';
 
@@ -23,7 +24,7 @@ export class PokemonCatalougePage implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.pokemonCatalogueService.findPokemon();
+    this.pokemonCatalogueService.findPokemon(GenerationKeys.gen1Start, GenerationKeys.gen2Start);
   }
 
   // TODO Get input value from selector, find pokemon from given gen
