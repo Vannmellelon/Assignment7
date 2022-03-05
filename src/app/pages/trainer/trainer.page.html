@@ -3,11 +3,12 @@
 
     <h1 class="title">Trainer page</h1>
     <h4 class="subtitle">Welcome (un)!</h4>
-    <h4 class="subtitle">Your Pokémon: </h4>
-    <!-- 
+    <h4 class="subtitle">Your Pokémon: </h4> 
         loading fra trainer service?? loding favourite pkmn ig
         pokemon also from trainer service(?) watch video ig
     <p *ngIf="loading">Loading Pokémon...</p>
-    <app-pokemon-list [pokemon]="pokemon"></app-pokemon-list>
+    <!-- Assign to variable in trainer page ts and pass to pkmn list
+    <app-pokemon-list [pokemon]="pokemon.filter((pkmn) => {return pkmn.caught === true})">
+    </app-pokemon-list>
     -->
 </main>
