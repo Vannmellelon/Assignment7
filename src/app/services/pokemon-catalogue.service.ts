@@ -30,22 +30,22 @@ export class PokemonCatalogueService {
     constructor(private readonly http: HttpClient) { }
 
     // Find pokemon
-    public findPokemon(): void {
+    public findPokemon(startIndex:number, endIndex:number): void {
+
+        console.log("URL: ", `${apiPokemon}?offset=${startIndex-1}&limit=${endIndex-startIndex}`);
 
         this._loading = true;
-        this.http.get<PokemonApiResponse>(apiPokemon)
+        this.http.get<PokemonApiResponse>(`${apiPokemon}?offset=${startIndex-1}&limit=${endIndex-startIndex}`) // ææææsj
         .pipe(
             finalize(() => {
-                this._setPokemonSpritesAndId();
+                this._setPokemonSpritesAndId(startIndex, endIndex);
                 this._loading = false;
             })
         )
         .subscribe({
             next: (pokemonResponse: PokemonApiResponse) => {
-                console.log("pokemon i next", pokemonResponse);
                 this._pokemon = pokemonResponse.results;
                 //console.log(this._pokemon[0]);
-                // TODO figure out how to set ids in the pokemon objects when getting
             },
             error: (error: HttpErrorResponse) => {
                 this._error = error.message;
@@ -53,19 +53,19 @@ export class PokemonCatalogueService {
         })
     }
 
-    private _setPokemonSpritesAndId() : void {
+    private _setPokemonSpritesAndId(start:number, end:number) : void {
         
-        // refactor?! lol
-        // Should be able to handle 1 gen at the time
-        // take in start and end indices
+        // TODO
         // check for animated sprite or not (based on indices gen #)
 
-        let counter = 1;
-        for (let pkmn of this._pokemon) {
+        let counter = start;
+        for (let i = 0; i <= end-start; i++) {
+            let pkmn = this._pokemon[i];
+            //console.log(pkmn);
             pkmn.id = counter; // Adds id
             pkmn.name = pkmn.name[0].toUpperCase() + pkmn.name.slice(1,pkmn.name.length); // Capitalizes the names of the pokemon
-            this._setPokemonDWart(pkmn, counter); // needed?
-            this._setPokemonAnimatedSprite(pkmn, counter); // gen5 animated sprites
+            //this._setPokemonDWart(pkmn, i); // needed?
+            this._setPokemonAnimatedSprite(pkmn); // gen5 animated sprites
             counter ++;
             //console.log(pkmn);
         }
@@ -76,13 +76,15 @@ export class PokemonCatalogueService {
         // EZ PZ >:D
     }
 
-    private _setPokemonAnimatedSprite (pkmn:Pokemon, id:number) : void {
-        pkmn.animatedSprite = apiPokemonAnimated + id + ".gif";
+    private _setPokemonAnimatedSprite (pkmn:Pokemon) : void {
+        //console.log(pkmn.name, apiPokemonAnimated + pkmn.id + ".gif");
+        pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
     }
+
+    // FIND specific pokemon based on name, extract id from URL via regex, can also just unpack the normal responnse?! lel
 
     // Check for pokemon function (?)
     // do we need it? we will control what pokemon we are getting
 
     // Find a pokemon based on name (?) override of find by id
-    // Find a list of pokemon based on id-intervall (?) region-endpoint?
 }
