@@ -18,7 +18,7 @@ This application was developed as a part of the .NET Fullstack course at Noroff 
 ## Usage
 
 
-[Click here](HEROKU-URL-HERE) to catch some Pokémon!
+[Click here](https://hidden-earth-20791.herokuapp.com/) to catch some Pokémon!
 
 
 ## Running the application locally
