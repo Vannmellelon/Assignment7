@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { GenerationKeys } from "../enums/generation-keys.enum";
 import { PokemonApiResponse } from "../models/pokemon-response.model";
 import { Pokemon } from "../models/pokemon.model";
+import { TrainerService } from "./trainer.service";
 
 const { apiPokemon, apiPokemonDW, apiPokemonAnimated, apiPokemonNotAnimated } = environment;
 
@@ -28,7 +29,10 @@ export class PokemonCatalogueService {
     }
     
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(
+        private readonly http: HttpClient,
+        private readonly trainerService: TrainerService,
+        ) { }
 
     // TODO
     // change to find ALL pokemon (i hele verden)
@@ -60,22 +64,27 @@ export class PokemonCatalogueService {
         })
     }
 
-            
-    // TODO
-    // check for animated sprite or not (based on indices gen #)
+    // Preps the Pokemon objects
     private _setPokemonSpritesAndId(start:number, end:number) : void {
 
         let counter = start;
         for (let i = 0; i <= end-start; i++) {
             let pkmn = this._pokemon[i];
-            //console.log(pkmn);
+
             pkmn.id = counter; // Adds id
             pkmn.name = pkmn.name[0].toUpperCase() + pkmn.name.slice(1,pkmn.name.length); // Capitalizes the names of the pokemon
+
             if (start < GenerationKeys.gen6Start) {
-                this._setPokemonAnimatedSprite(pkmn); // gen5 animated sprites
+                this._setPokemonAnimatedSprite(pkmn); // Gen5 animated sprites
             } else {
                 this._setPokemonStaticSprite(pkmn);
             }
+
+            // Pokemon is previously caught by trainer
+            if (this.trainerService.inCaught(pkmn.name)) {
+                pkmn.caught = true;
+            }
+
             counter ++;
             //console.log(pkmn);
         }

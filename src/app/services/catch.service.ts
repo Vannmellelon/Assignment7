@@ -22,7 +22,7 @@ export class CatchService {
 
   constructor(
     private http: HttpClient,
-    private readonly pokemonService: PokemonCatalogueService,
+    //private readonly pokemonService: PokemonCatalogueService,
     private readonly trainerService: TrainerService,
   ) { }
 
