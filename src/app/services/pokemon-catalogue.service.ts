@@ -2,8 +2,10 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { finalize, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { GenerationKeys } from "../enums/generation-keys.enum";
 import { PokemonApiResponse } from "../models/pokemon-response.model";
 import { Pokemon } from "../models/pokemon.model";
+import { TrainerService } from "./trainer.service";
 
 const { apiPokemon, apiPokemonDW, apiPokemonAnimated, apiPokemonNotAnimated } = environment;
 
@@ -27,12 +29,15 @@ export class PokemonCatalogueService {
     }
     
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(
+        private readonly http: HttpClient,
+        private readonly trainerService: TrainerService,
+        ) { }
 
     // TODO
     // change to find ALL pokemon (i hele verden)
     // shmækk 'em into session storage
-    // IF TIME
+    // IF-TIME
     // change caught values for pokemon, based on the pokemon of current trainer (so they are not greyed out)
     
     // Find pokemon
@@ -59,32 +64,41 @@ export class PokemonCatalogueService {
         })
     }
 
-            
-    // TODO
-    // check for animated sprite or not (based on indices gen #)
+    // Preps the Pokemon objects
     private _setPokemonSpritesAndId(start:number, end:number) : void {
 
         let counter = start;
         for (let i = 0; i <= end-start; i++) {
             let pkmn = this._pokemon[i];
-            //console.log(pkmn);
+
             pkmn.id = counter; // Adds id
             pkmn.name = pkmn.name[0].toUpperCase() + pkmn.name.slice(1,pkmn.name.length); // Capitalizes the names of the pokemon
-            //this._setPokemonDWart(pkmn, i); // needed?
-            this._setPokemonAnimatedSprite(pkmn); // gen5 animated sprites
+
+            if (start < GenerationKeys.gen6Start) {
+                this._setPokemonAnimatedSprite(pkmn); // Gen5 animated sprites
+            } else {
+                this._setPokemonStaticSprite(pkmn);
+            }
+
+            // Pokemon is previously caught by trainer
+            if (this.trainerService.inCaught(pkmn.name)) {
+                pkmn.caught = true;
+            }
+
             counter ++;
             //console.log(pkmn);
         }
     }
 
-    private _setPokemonDWart(pkmn:Pokemon, id:number) : void {
-        pkmn.dwArt = apiPokemonDW + id + ".svg";
+    // Gen <= 5
+    private _setPokemonAnimatedSprite (pkmn:Pokemon) : void {
+        pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
         // EZ PZ >:D
     }
-
-    private _setPokemonAnimatedSprite (pkmn:Pokemon) : void {
-        //console.log(pkmn.name, apiPokemonAnimated + pkmn.id + ".gif");
-        pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
+    
+    // Gen 6+
+    private _setPokemonStaticSprite(pkmn:Pokemon) : void {
+        pkmn.sprite = apiPokemonNotAnimated + pkmn.id + ".png";
     }
 
     public pokemonById(id: string): Pokemon | undefined {

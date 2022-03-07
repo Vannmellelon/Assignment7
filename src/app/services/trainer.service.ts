@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
+import { GenerationKeys } from '../enums/generation-keys.enum';
 import { StorageKeys } from '../enums/storage-keys.enum';
 import { Pokemon } from '../models/pokemon.model';
 import { Trainer } from '../models/trainer.model';
 import { StorageUtil } from '../utils/storage.util';
 
-// TODO
-// Set caught pokemon
-// Remove caught pokemon
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +28,7 @@ export class TrainerService {
   }
 
   public inCaught(pkmnName: string): boolean {
+    
     if (this._trainer) {
       return Boolean(this._trainer?.pokemon.find((trainerPkmn: string[]) => trainerPkmn[0] === pkmnName));
     }
@@ -40,9 +39,13 @@ export class TrainerService {
 
     // trixing and fixing
     let _pkmnImage = ""
-    if (pkmn.animatedSprite) {
+    if (pkmn.animatedSprite && pkmn.id < GenerationKeys.gen6Start) {
       _pkmnImage = pkmn.animatedSprite;
-    } else {
+    } 
+    if (pkmn.sprite && pkmn.id >= GenerationKeys.gen6Start){
+      _pkmnImage = pkmn.sprite;
+    }
+    else {
       _pkmnImage = "undefined :'(";
     }
 
@@ -52,6 +55,7 @@ export class TrainerService {
   }
 
   public releasePokemon(pkmnName: string): void {
+
     if (this._trainer) {
       let _index: number = this._trainer.pokemon.findIndex((trainerPkmn: string[]) => trainerPkmn[0] === pkmnName);
       if (_index >= 0) {
