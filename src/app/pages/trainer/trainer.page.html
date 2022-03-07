@@ -1,12 +1,20 @@
 <!-- trainer.page.html -->
-<main class="trainer">
+<main class="trainer flex flex-col items-center">
+    <h1 class="title text-5xl font-semibold pt-10">Hi, {{trainer?.username}}!</h1>
+    
 
-    <h1 class="title">Trainer page</h1>
-    <h4 class="subtitle">Welcome (un)!</h4>
-    <h4 class="subtitle">Your Pokémon: </h4> 
-        loading fra trainer service?? loding favourite pkmn ig
+    <!-- <div *ngFor="let pkmn of pokemon">
+        <span *ngFor="let trainerPkm of trainer?.pokemon">
+            <p>{{trainerPkm}}</p>
+            <div *ngIf="pkmn.name === trainerPkm">
+                <p>{{trainerPkm}}</p>
+            </div>
+        </span>
+    </div> -->
+
+    <!--     loading fra trainer service?? loding favourite pkmn ig
         pokemon also from trainer service(?) watch video ig
-    <p *ngIf="loading">Loading Pokémon...</p>
+    <p *ngIf="loading">Loading Pokémon...</p> -->
     <!-- Assign to variable in trainer page ts and pass to pkmn list
     <app-pokemon-list [pokemon]="pokemon.filter((pkmn) => {return pkmn.caught === true})">
     </app-pokemon-list>

@@ -1,7 +1,6 @@
 <!-- pokemon-catalogue.page.html -->
-<main class="flex flex-col items-center p-10">
-
-    <h1 class="title">Pokémon catalogue</h1>
+<main class="flex flex-col items-center p-20 pt-10">
+    
 
     <!--
         TODO 
@@ -9,12 +8,17 @@
         Triggers API call, so wrap in form to avoid unnecessary fetching
         add onSubmit function in ts-file
     -->
-    <h4 class="subtitle">Select region</h4>
-    <select name="select-region" id="select-region">
-        <option value="1">Kanto - gen 1</option>
-    </select>
+    <h1 class="title text-5xl font-semibold">Pokémon catalogue</h1>
+    <div class="p-4">
+        <label class="pr-5 text-lg">Choose generation: </label>
+        <select class="" name="select-region" id="select-region">
+            <option>Select generation</option>
+            <option value="1">Kanto - gen 1</option>
+        </select>
+        <p class="font-semibold text-lg">Click the pokéball to catch your next pokemon!</p>
+    </div>
+
     
-    <h4 class="subtitle">Pokémon</h4>
-    <p *ngIf="loading">Loading Pokémon...</p>
+    <!-- <p *ngIf="loading">Loading Pokémon...</p> -->
     <app-pokemon-list [pokemon]="pokemon"></app-pokemon-list>
 </main>

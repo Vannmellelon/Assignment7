@@ -1,8 +1,9 @@
-<div *ngIf="pkmn" class="pkmn w-36 h-36 p-2 m-2 flex flex-col content-center justify-center relative">
+<div *ngIf="pkmn" class="pkmn w-52 h-52 m-1 flex flex-col content-center justify-center
+ relative rounded-lg hover:bg-blue-200 ease-in duration-75 bg-yellow-200 shadow-lg">
     <app-catch-button [pokemon]="pkmn"></app-catch-button>
-    <img class="pkmnImg object-none max-w-24 max-h-24"
-    [ngStyle]="{'filter':pkmn.caught === true ? 'grayscale(0)' : 'grayscale(100)'}" 
-    src={{pkmn.animatedSprite}} alt={{pkmn.name}}>
-    <span class="pkmnName text-center">{{pkmn.name}}</span>
+    <img class="pkmnImg object-none max-w-36 max-h-36"
+        [ngStyle]="{'filter':pkmn.caught === true ? 'grayscale(0)' : 'grayscale(100)'}" 
+        src={{pkmn.animatedSprite}} alt={{pkmn.name}}>
+    <span class="pkmnName text-center text-blue-900 font-semibold text-xl">{{pkmn.name}}</span>
 </div>
 <!-- ngStyle is very cool B) -->
