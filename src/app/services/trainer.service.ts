@@ -27,4 +27,11 @@ export class TrainerService {
     this._trainer = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer)
     
   }
+
+  public inCaught(pkmnName: string): boolean {
+    if (this._trainer) {
+      return Boolean(this._trainer?.pokemon.find((trainerPkmnName: string) => trainerPkmnName === pkmnName)); // TODO change to array [pokemon name, picURL]
+    }
+    return false;
+  } 
 }

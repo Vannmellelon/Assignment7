@@ -81,10 +81,15 @@ export class PokemonCatalogueService {
         pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
     }
 
-    // FIND specific pokemon based on name, extract id from URL via regex, can also just unpack the normal responnse?! lel
+    public pokemonById(id: string): Pokemon | undefined {
+        return this._pokemon.find((pkmn : Pokemon) => pkmn.id.toString() === id);
+    }
 
-    // Check for pokemon function (?)
-    // do we need it? we will control what pokemon we are getting
+    public pokemonByName(name: string): Pokemon | undefined {
+        return this._pokemon.find((pkmn: Pokemon) => pkmn.name.toLowerCase() === name);
+    }
 
     // Find a pokemon based on name (?) override of find by id
+    // FIND specific pokemon based on name, extract id from URL via regex, can also just unpack the normal responnse?!
+
 }
