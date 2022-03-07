@@ -40,9 +40,11 @@ export class TrainerService {
     // trixing and fixing
     let _pkmnImage = ""
     if (pkmn.animatedSprite && pkmn.id < GenerationKeys.gen6Start) {
+      console.log("animated", pkmn.name);
       _pkmnImage = pkmn.animatedSprite;
     } 
-    if (pkmn.sprite && pkmn.id >= GenerationKeys.gen6Start){
+    else if (pkmn.sprite && pkmn.id >= GenerationKeys.gen6Start){
+      console.log("static",pkmn.name);
       _pkmnImage = pkmn.sprite;
     }
     else {
