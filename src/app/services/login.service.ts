@@ -41,6 +41,7 @@ export class LoginService {
   private createUser(username: string): Observable<Trainer> {
     const trainer = {
       username,
+      pokemon: [],
     }
     const headers = new HttpHeaders({
       "Content-Tupe": "application/json",
