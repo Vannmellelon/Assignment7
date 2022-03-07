@@ -32,7 +32,7 @@ export class PokemonCatalogueService {
     // TODO
     // change to find ALL pokemon (i hele verden)
     // shmækk 'em into session storage
-    // IF TIME
+    // IF-TIME
     // change caught values for pokemon, based on the pokemon of current trainer (so they are not greyed out)
     
     // Find pokemon

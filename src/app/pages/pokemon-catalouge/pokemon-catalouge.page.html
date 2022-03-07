@@ -5,15 +5,18 @@
     <!--
         TODO 
         region selector
-        Triggers API call, so wrap in form to avoid unnecessary fetching
         add onSubmit function in ts-file
     -->
     <h1 class="title text-5xl font-semibold">Pokémon catalogue</h1>
     <div class="p-4">
         <label class="pr-5 text-lg">Choose generation: </label>
-        <select class="" name="select-region" id="select-region">
+        <select [(ngModel)]="selectedRegion" (change)="onChangeRegion()" class="" name="select-region" id="select-region">
             <option>Select generation</option>
             <option value="1">Kanto - gen 1</option>
+            <option value="2">Johto - gen 2</option>
+            <option value="3">Hoenn - gen 3</option>
+            <option value="4">Sinnoh - gen 4</option>
+            <option value="5">Unova - gen 5</option>
         </select>
         <p class="font-semibold text-lg">Click the pokéball to catch your next pokemon!</p>
     </div>
