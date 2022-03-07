@@ -1,16 +1,16 @@
 <!-- trainer.page.html -->
-<main class="trainer flex flex-col items-center justify-center">
+<main class="trainer flex flex-col items-center">
     <h1 class="title text-5xl font-semibold pt-10">Hi, {{trainer?.username}}!</h1>
-    
-
-    <!-- <div *ngFor="let pkmn of pokemon">
-        <span *ngFor="let trainerPkm of trainer?.pokemon">
-            <p>{{trainerPkm}}</p>
-            <div *ngIf="pkmn.name === trainerPkm">
-                <p>{{trainerPkm}}</p>
-            </div>
-        </span>
-    </div> -->
+    <p class="pt-4 text-xl font-semibold">Here you can see all the pokémon you have collected on your journey to catch'em all.</p>
+    <div class="pt-6 max-w-6xl flex flex-wrap">
+        <div *ngFor="let pokemon of trainer?.pokemon" 
+            class=" text-center w-64 h-32 flex justify-evenly items-center rounded-lg shadow-lg bg-yellow-200 p-6 m-2">
+            <img src={{pokemon[1]}}
+                class="object-none max-w-36 max-h-36"
+            />
+            <p class="text-2xl text-blue-900 font-semibold">{{pokemon[0]}}</p>
+        </div>
+    </div>
 
     <!--     loading fra trainer service?? loding favourite pkmn ig
         pokemon also from trainer service(?) watch video ig
