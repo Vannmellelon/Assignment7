@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Trainer } from 'src/app/models/trainer.model';
 import { CatchService } from 'src/app/services/catch.service';
+import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
   selector: 'app-catch-button',
@@ -11,6 +12,7 @@ import { CatchService } from 'src/app/services/catch.service';
 })
 export class CatchButtonComponent implements OnInit {
 
+  //public isCaught: boolean = false;
   @Input() pokemon: Pokemon = {
     id: 0,
     name: '',
@@ -25,28 +27,20 @@ export class CatchButtonComponent implements OnInit {
   }
 
   constructor(
+    //private trainerService: TrainerService,
     private readonly catchService: CatchService,
   ) { }
 
   ngOnInit(): void {
+    //this.isCaught = this.trainerService.inCaught(this.pokemon.name);
+    // Have this as a field on the pokemon object itself instead
   }
 
   onCatchClick(): void {
-
-    // TODO Add the selected pokemon to the trainer, update API also
     
     //alert("Caught a Pokémon!" + " " + this.pokemon?.name);
-    // TODO 
-    // change!! This is only session-based, does not consider trainers previously caught pokemon
-    // Use trainerService.inCaught instead(?)
 
-    if (this.pokemon.caught) {
-      this.pokemon.caught = false;
-    } else {
-      this.pokemon.caught = true;
-    }
-
-    // pass the whole pokemon??
+    // Removes/Adds the pokemon to the trainer API
     this.catchService.addToCaught(this.pokemon)
     .subscribe({
       next: (response: Trainer) => {
@@ -56,6 +50,14 @@ export class CatchButtonComponent implements OnInit {
       console.log("ERROR: ", error.message);
     }
     })
+
+    // for stylilng
+     // "local" state only
+    if (this.pokemon.caught) {
+      this.pokemon.caught = false;
+    } else {
+      this.pokemon.caught = true;
+    }
   }
 
 }

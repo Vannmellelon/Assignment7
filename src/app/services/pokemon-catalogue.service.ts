@@ -29,6 +29,12 @@ export class PokemonCatalogueService {
 
     constructor(private readonly http: HttpClient) { }
 
+    // TODO
+    // change to find ALL pokemon (i hele verden)
+    // shmækk 'em into session storage
+    // IF TIME
+    // change caught values for pokemon, based on the pokemon of current trainer (so they are not greyed out)
+    
     // Find pokemon
     public findPokemon(startIndex:number, endIndex:number): void {
 
@@ -53,10 +59,10 @@ export class PokemonCatalogueService {
         })
     }
 
+            
+    // TODO
+    // check for animated sprite or not (based on indices gen #)
     private _setPokemonSpritesAndId(start:number, end:number) : void {
-        
-        // TODO
-        // check for animated sprite or not (based on indices gen #)
 
         let counter = start;
         for (let i = 0; i <= end-start; i++) {
@@ -88,8 +94,4 @@ export class PokemonCatalogueService {
     public pokemonByName(name: string): Pokemon | undefined {
         return this._pokemon.find((pkmn: Pokemon) => pkmn.name.toLowerCase() === name);
     }
-
-    // Find a pokemon based on name (?) override of find by id
-    // FIND specific pokemon based on name, extract id from URL via regex, can also just unpack the normal responnse?!
-
 }
