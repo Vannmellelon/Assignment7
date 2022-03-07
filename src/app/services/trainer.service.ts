@@ -3,6 +3,10 @@ import { StorageKeys } from '../enums/storage-keys.enum';
 import { Trainer } from '../models/trainer.model';
 import { StorageUtil } from '../utils/storage.util';
 
+// TODO
+// Set caught pokemon
+// Remove caught pokemon
+
 @Injectable({
   providedIn: 'root'
 })

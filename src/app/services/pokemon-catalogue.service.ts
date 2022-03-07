@@ -55,9 +55,7 @@ export class PokemonCatalogueService {
 
     private _setPokemonSpritesAndId(start:number, end:number) : void {
         
-        // refactor?! lol
-        // Should be able to handle 1 gen at the time
-        // take in start and end indices
+        // TODO
         // check for animated sprite or not (based on indices gen #)
 
         let counter = start;
@@ -83,9 +81,10 @@ export class PokemonCatalogueService {
         pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
     }
 
+    // FIND specific pokemon based on name, extract id from URL via regex, can also just unpack the normal responnse?! lel
+
     // Check for pokemon function (?)
     // do we need it? we will control what pokemon we are getting
 
     // Find a pokemon based on name (?) override of find by id
-    // Find a list of pokemon based on id-intervall (?) region-endpoint?
 }
