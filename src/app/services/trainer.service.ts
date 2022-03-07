@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GenerationKeys } from '../enums/generation-keys.enum';
 import { StorageKeys } from '../enums/storage-keys.enum';
 import { Pokemon } from '../models/pokemon.model';
 import { Trainer } from '../models/trainer.model';
@@ -38,9 +39,13 @@ export class TrainerService {
 
     // trixing and fixing
     let _pkmnImage = ""
-    if (pkmn.animatedSprite) {
+    if (pkmn.animatedSprite && pkmn.id < GenerationKeys.gen6Start) {
       _pkmnImage = pkmn.animatedSprite;
-    } else {
+    } 
+    if (pkmn.sprite && pkmn.id >= GenerationKeys.gen6Start){
+      _pkmnImage = pkmn.sprite;
+    }
+    else {
       _pkmnImage = "undefined :'(";
     }
 

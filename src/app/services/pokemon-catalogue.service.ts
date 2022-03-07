@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { finalize, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { GenerationKeys } from "../enums/generation-keys.enum";
 import { PokemonApiResponse } from "../models/pokemon-response.model";
 import { Pokemon } from "../models/pokemon.model";
 
@@ -70,21 +71,25 @@ export class PokemonCatalogueService {
             //console.log(pkmn);
             pkmn.id = counter; // Adds id
             pkmn.name = pkmn.name[0].toUpperCase() + pkmn.name.slice(1,pkmn.name.length); // Capitalizes the names of the pokemon
-            //this._setPokemonDWart(pkmn, i); // needed?
-            this._setPokemonAnimatedSprite(pkmn); // gen5 animated sprites
+            if (start < GenerationKeys.gen6Start) {
+                this._setPokemonAnimatedSprite(pkmn); // gen5 animated sprites
+            } else {
+                this._setPokemonStaticSprite(pkmn);
+            }
             counter ++;
             //console.log(pkmn);
         }
     }
 
-    private _setPokemonDWart(pkmn:Pokemon, id:number) : void {
-        pkmn.dwArt = apiPokemonDW + id + ".svg";
+    // Gen <= 5
+    private _setPokemonAnimatedSprite (pkmn:Pokemon) : void {
+        pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
         // EZ PZ >:D
     }
-
-    private _setPokemonAnimatedSprite (pkmn:Pokemon) : void {
-        //console.log(pkmn.name, apiPokemonAnimated + pkmn.id + ".gif");
-        pkmn.animatedSprite = apiPokemonAnimated + pkmn.id + ".gif";
+    
+    // Gen 6+
+    private _setPokemonStaticSprite(pkmn:Pokemon) : void {
+        pkmn.sprite = apiPokemonNotAnimated + pkmn.id + ".png";
     }
 
     public pokemonById(id: string): Pokemon | undefined {

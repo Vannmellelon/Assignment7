@@ -48,6 +48,15 @@ export class PokemonCatalougePage implements OnInit {
       case ("5"):
         this.pokemonCatalogueService.findPokemon(GenerationKeys.gen5Start, GenerationKeys.gen6Start);
         break;
+      case ("6"):
+        this.pokemonCatalogueService.findPokemon(GenerationKeys.gen6Start, GenerationKeys.gen7Start);
+        break;
+      case ("7"):
+        this.pokemonCatalogueService.findPokemon(GenerationKeys.gen7Start, GenerationKeys.gen8Start);
+        break;
+      case ("8"):
+        this.pokemonCatalogueService.findPokemon(GenerationKeys.gen8Start, GenerationKeys.gen8End);
+        break;
       default:
         console.log("Region selector default.");
         break;
